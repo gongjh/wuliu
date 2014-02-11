@@ -1,0 +1,72 @@
+<extend name="Public/base"/>
+
+<block name="sidebar">
+    <include file="sidemenu" />
+</block>
+<block name="body">
+    <form action="__SELF__" method="post" class="form-horizontal">
+        <div style="text-align: center;" id="kddh">
+            <volist name="list" id="vo">
+
+                <if condition="$key % 7 eq 0"><br>
+                    <if condition="$vo.id eq 1">
+                        <input type="button" value="{$vo.name}"  style="cursor:pointer;margin-top: 10px;margin-left:20px;background-image: url('__ROOT__/Public/Admin/images/kdbgc.png');border: 0px;width: 66px;height: 23px;color: #000;" data-id="{$vo.id}" onclick="selectbg({$vo.id})">
+                        <else/>
+                        <input type="button" value="{$vo.name}"  style="cursor:pointer;margin-top: 10px;margin-left:20px;background-image: url('__ROOT__/Public/Admin/images/kdbg.png');border: 0px;width: 66px;height: 23px;color: #fff;" data-id="{$vo.id}" onclick="selectbg({$vo.id})">
+                    </if>
+
+                    <else/><input type="button" value="{$vo.name}"  data-id="{$vo.id}" onclick="selectbg({$vo.id})" style="cursor:pointer;margin-left:20px;background-image: url('__ROOT__/Public/Admin/images/kdbg.png');border: 0px;color: #fff;width: 66px;height: 23px;"></if>
+            </volist>
+        </div>
+        <div style="background-image: url('__ROOT__/Public/Admin/images/bg2.png'); width:760px;height: 408px;margin: 0 auto;padding: 0;">
+            <div style="text-align: center;padding-top: 20px">
+                <img src="__ROOT__/Public/Admin/images/1.png" id="kd">
+                <input type="hidden" name="company_id" id="company_id" value="1">
+            </div>
+            <div style="margin-left: 176px;">
+                <input type="text" class="text input-mid" name="name" style="width:170px;height: 20px;margin-top: 31px;border: 0px;margin-left: -3px;">
+                <input type="text" class="text input-mid" name="shelf" style="width:170px;height: 20px;margin-top: 31px;border: 0px;margin-left: 104px;">
+            </div>
+            <div style="margin-left: 176px;padding-top: 26px;">
+                <input type="text" class="text input-mid" name="tel" style="width:170px;height: 18px;margin-top: 5px;border: 0px;margin-left: -3px;">
+                <input type="text" class="text input-mid"  value="{$city}" name="city" style="width:170px;height: 20px;margin-top: 7px;border: 0px;margin-left: 104px;" readonly>
+            </div>
+            <div style="margin-left: 176px;padding-top: 26px;">
+                <input type="text" class="text input-mid" name="code" style="width:170px;height: 18px;margin-top: -5px;border: 0px;margin-left: -3px;">
+                <input type="button" id="type1"  onclick="check(1)"
+                       style="background-image: url('__ROOT__/Public/Admin/images/checked.png');width: 15px;height: 15px;border: 0px;margin-left: 105px;margin-top: 17px;">
+                <input type="button"id="type2"  onclick="check(2)"style="background-image: url('__ROOT__/Public/Admin/images/uncheck.png');width: 15px;height: 15px;border: 0px;margin-left:69px;margin-top: 17px;">
+            </div>
+            <div style="margin-left: 355px;margin-top: -10px;">
+                <input type="button" id="type3"  onclick="check(3)" style="background-image: url('__ROOT__/Public/Admin/images/uncheck.png');width: 15px;height: 15px;border: 0px;margin-left: 105px;margin-top: 15px;">
+                <input type="button"id="type4" onclick="check(4)"style="background-image: url('__ROOT__/Public/Admin/images/uncheck.png');width: 15px;height: 15px;border: 0px;margin-left:69px;margin-top: 15px;">
+            </div>
+            <div style="text-align: center;margin-top: 20px;">
+                <input type="hidden" name="type" id="type" value="1">
+                <input type="submit"   value=" " style="background-image: url('__ROOT__/Public/Admin/images/submit.png');width: 98px;height: 30px;border: 0px;color: #fff;vertical-align: middle">
+                <input type="reset" value=" " style="background-image: url('__ROOT__/Public/Admin/images/reset.png');width: 98px;height: 30px;border: 0px;color: #fff;vertical-align: middle">
+            </div>
+        </div>
+    </form>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        function selectbg(id){
+            for(i=1;i<=14;i++){
+                $("#kddh [data-id="+i+"]").css({background:"url('__ROOT__/Public/Admin/images/kdbg.png')",color:"#fff"});
+            }
+            $("#kddh [data-id="+id+"]").css({background:"url('__ROOT__/Public/Admin/images/kdbgc.png')",color:"#000"});
+            $("#kd").attr("src","__ROOT__/Public/Admin/images/"+id+".png");
+            $("#company_id").val(id);
+        }
+        function check(id){
+            $("#type1").css("background-image","url('__ROOT__/Public/Admin/images/uncheck.png')");
+            $("#type2").css("background-image","url('__ROOT__/Public/Admin/images/uncheck.png')");
+            $("#type3").css("background-image","url('__ROOT__/Public/Admin/images/uncheck.png')");
+            $("#type4").css("background-image","url('__ROOT__/Public/Admin/images/uncheck.png')");
+            $("#type"+id).css("background-image","url('__ROOT__/Public/Admin/images/checked.png')");
+            $("#type").val(id);
+        }
+    </script>
+</block>

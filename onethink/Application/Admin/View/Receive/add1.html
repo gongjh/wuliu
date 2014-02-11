@@ -1,0 +1,231 @@
+<extend name="Public/base"/>
+<block name="sidebar">
+    <include file="sidemenu" />
+</block>
+<block name="body">
+    <div class="main-title">
+        <h2>新增收货信息</h2>
+    </div>
+    <form action="__SELF__" method="post" class="form-horizontal">
+        <div class="form-item">
+            <label class="item-label">物流公司<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="company_id" id="company_id">
+                    <volist name="list" id="vo">
+                        <option value="{$vo.id}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">目的地<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="receive_address" id="receive_address">
+                    <option value="北京">北京</option>
+                    <option value="天津">天津</option>
+                    <option value="河北">河北</option>
+                    <option value="山西">山西</option>
+                    <option value="内蒙古">内蒙古</option>
+                    <option value="山东">山东</option>
+                    <option value="江苏">江苏</option>
+                    <option value="安徽">安徽</option>
+                    <option value="福建">福建</option>
+                    <option value="上海">上海</option>
+                    <option value="广东">广东</option>
+                    <option value="广西">广西</option>
+                    <option value="海南">海南</option>
+                    <option value="湖北">湖北</option>
+                    <option value="湖南">湖南</option>
+                    <option value="河南">河南</option>
+                    <option value="江西">江西</option>
+                    <option value="宁夏">宁夏</option>
+                    <option value="新疆">新疆</option>
+                    <option value="青海">青海</option>
+                    <option value="陕西">陕西</option>
+                    <option value="甘肃">甘肃</option>
+                    <option value="四川">四川</option>
+                    <option value="云南">云南</option>
+                    <option value="贵州">贵州</option>
+                    <option value="西藏">西藏</option>
+                    <option value="重庆">重庆</option>
+                    <option value="辽宁">辽宁</option>
+                    <option value="云南">云南</option>
+                    <option value="吉林">吉林</option>
+                    <option value="黑龙江">黑龙江</option>
+                    <option value="浙江">浙江</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">快递单号<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="code" value="" id="code">
+                <div id="info"></div>
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">重量（KG）<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="weight" value="" placeholder="单位kg" id="weight">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">折扣（元）<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="discount" value="0" placeholder="单位kg" id="discount">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">包装费（元）<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="pack" value="0" placeholder="单位kg" id="pack">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">价格（元）<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="price" value="" id="price" placeholder="单位元">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">收货人姓名<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="receive_name" value="">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">收货人联系电话<span class="check-tips">（默认填手机号，无手机号写固定电话）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="receive_phone" value="">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">寄件人姓名<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="send_name" value="">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">寄件人联系电话<span class="check-tips">（默认填手机号，无手机号写固定电话）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="send_phone" value="">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">所在地<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="send_address">
+                    <option value="北京">北京</option>
+                    <option value="天津">天津</option>
+                    <option value="河北">河北</option>
+                    <option value="山西">山西</option>
+                    <option value="内蒙古">内蒙古</option>
+                    <option value="山东">山东</option>
+                    <option value="江苏">江苏</option>
+                    <option value="安徽">安徽</option>
+                    <option value="福建">福建</option>
+                    <option value="上海">上海</option>
+                    <option value="广东">广东</option>
+                    <option value="广西">广西</option>
+                    <option value="海南">海南</option>
+                    <option value="湖北">湖北</option>
+                    <option value="湖南">湖南</option>
+                    <option value="河南">河南</option>
+                    <option value="江西">江西</option>
+                    <option value="宁夏">宁夏</option>
+                    <option value="新疆">新疆</option>
+                    <option value="青海">青海</option>
+                    <option value="陕西">陕西</option>
+                    <option value="甘肃">甘肃</option>
+                    <option value="四川">四川</option>
+                    <option value="云南">云南</option>
+                    <option value="贵州">贵州</option>
+                    <option value="西藏">西藏</option>
+                    <option value="重庆">重庆</option>
+                    <option value="辽宁">辽宁</option>
+                    <option value="云南">云南</option>
+                    <option value="吉林">吉林</option>
+                    <option value="黑龙江">黑龙江</option>
+                    <option value="浙江">浙江</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">所在站点<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="city" value="{$city}" readonly>
+            </div>
+        </div>
+        <div class="form-item">
+            <button class="btn submit-btn ajax-post" id="submit" type="submit"  name="add" target-form="form-horizontal">确 定</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        document.onkeydown = function () {
+            if (window.event && window.event.keyCode == 13) {
+                window.event.returnValue = false;
+            }
+        }
+        $(function(){
+    $('#discount').bind('focus change keyup', function() {
+        $.post("{:U('Receive/getPrice')}", { receive_address: $("#receive_address").val(), weight: $("#weight").val(),pack: $("#pack").val(),company_id:$("#company_id").val(),discount:$("#discount").val() },
+                function(data){
+                    $("#price").val(data);
+                });
+    });
+            $('#weight').bind('focus change keyup', function() {
+                $.post("{:U('Receive/getPrice')}", { receive_address: $("#receive_address").val(),pack: $("#pack").val(), weight: $("#weight").val(),company_id:$("#company_id").val(),discount:$("#discount").val() },
+                        function(data){
+                            $("#price").val(data);
+                        });
+
+            });
+            $('#pack').bind('focus change keyup', function() {
+                $.post("{:U('Receive/getPrice')}", { receive_address: $("#receive_address").val(),pack: $("#pack").val(), weight: $("#weight").val(),company_id:$("#company_id").val(),discount:$("#discount").val() },
+                        function(data){
+                            $("#price").val(data);
+                        });
+
+            });
+            $("#code").blur(function(){
+                if($("#code").val()==""){
+                    $("#info").show(1000);
+                    $("#info").html("<span style='color:#db2d20'>不能为空</span>");
+                    $("#info").hide(2000);
+                    $("#submit").attr("disabled","disabled");
+                    return false;
+                }
+                $.post("{:U('Public/checkCode')}", { code: $("#code").val()},
+                        function(data){
+                            data=eval('(' + data + ')');
+                            if(data.status==1){
+                                $("#info").show(1000);
+                          $("#info").html("<span style='color:#27ae60'>"+data.info+"</span>");
+                                $("#info").hide(2000);
+                                $("#submit").removeAttr("disabled");
+
+
+                            }else{
+                                $("#info").show(1000);
+                                $("#info").html("<span style='color:#db2d20'>"+data.info+"</span>");
+                                $("#info").hide(2000);
+                                $("#submit").attr("disabled","disabled");
+                            }
+                        });
+
+            });
+
+            $("#company_id").change(function(){
+                $("#weight").val("");
+                //$("#discount").val("");
+                $("#price").val("");
+            });
+            });
+
+
+    </script>
+</block>

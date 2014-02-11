@@ -1,0 +1,23 @@
+<extend name="Public/base"/>
+<block name="sidebar">
+    <include file="sidemenu" />
+</block>
+<block name="body">
+    <div class="main-title">
+        <h2>修改备注</h2>
+    </div>
+    <form action="__SELF__" method="post" class="form-horizontal">
+        <div class="form-item"  id="remark">
+            <label class="item-label">备注：<span class="check-tips"></span></label>
+            <div class="controls">
+                <textarea name="remark" class="input-large">{$info.remark|default="无"}</textarea>
+            </div>
+        </div>
+        <div class="form-item">
+            <input type="hidden" name="id" value="{$info.id}">
+            <button class="btn submit-btn ajax-post" id="submit" type="submit"  name="add" target-form="form-horizontal">确 定</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
+</block>
+

@@ -1,0 +1,117 @@
+<extend name="Public/base" />
+<block name="sidebar">
+    <include file="sidemenu" />
+</block>
+<block name="body">
+	<!-- 标题栏 -->
+	<div class="main-title">
+		<h2>收货列表</h2>
+	</div>
+	<div class="cf">
+		<div class="fl">
+            <a class="btn" href="{:U('Receive/add')}">新 增</a>
+            <button class="btn ajax-post confirm" target-form="ids" url="{:U('remove')}">删 除</button>
+            <a class="btn" href="{:U('Receive/export')}">导出</a>
+        </div>
+</div>
+    <div class="cf">
+        <!-- 高级搜索 -->
+        <form action="{:U('Receive/index')}" method="POST">
+        <div class=".search-form f1">
+               <div class="sleft">
+                   开始时间： <input type="text" id="firstDate"  name="firstDate" class="text  time" value="{$default_time}" placeholder="开始时间">
+                   结束时间： <input type="text" id="endDate" name="endDate" class="text  time" value="{$default_time}" placeholder="结束时间">
+               </div>
+                   <div class="cf">
+                   物流公司：
+                   <select name="company_id">
+                       <option value="">所有</option>
+                   <volist name="clist" id="vo">
+                       <option value="{$vo.id}">{$vo.name}</option>
+                   </volist>
+               </select>
+
+
+                   <input type="text" name="condition" placeholder="寄件人手机尾号/寄件人姓名/快递单号" class="input-large">
+                   <input type="submit" value="搜索"  id="submit" class="btn">
+               </div>
+        </div></form>
+    </div>
+    <!-- 数据列表 -->
+    <div class="data-table table-striped">
+	<table class="table">
+
+    <thead>
+    <tr class="text-center" style="background-color: #eed3d7;height: 40px"><td colspan="14"><if condition="$list.firstDate neq ''">从{$list.firstDate}到{$list.endDate},</if>{$list.company_id|getCompany}总共收取{$list.count} 件，总金额为：{$list.total_price}元 </td></tr>
+        <tr>
+		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+		<!--<th class="">ID</th>-->
+		<th class="">收货人姓名</th>
+        <th class="">收货人地址</th>
+            <th class="">收货人电话</th>
+            <th class="">快递单号</th>
+            <th class="">物流公司名称</th>
+            <th class="">寄件人姓名</th>
+            <th class="">寄件人地址</th>
+            <th class="">寄件人电话</th>
+		<th class="">入库时间</th>
+		<!--<th class="">所在站点</th>-->
+            <th class="">重量</th>
+            <th class="">价格</th>
+         <th class="">操作</th>
+		</tr>
+    </thead>
+    <tbody>
+		<volist name="_list" id="vo">
+		<tr style="background-color: #ffffff">
+            <td><input class="ids" type="checkbox" name="ids[]" value="{$vo.id}" />
+            </td>
+			<!--<td>{$vo.id} </td>-->
+			<td>{$vo.receive_name}</td>
+			<td>{$vo.receive_address}</td>
+			<td>{$vo.receive_phone}</td>
+            <td>{$vo.code}</td>
+			<td><span>{$vo.company_id|getCompany}</span></td>
+			<td>{$vo.send_name}</td>
+            <td>{$vo.send_address}</td>
+            <td>{$vo.send_phone}</td>
+            <td><span>{$vo.receive_time|time_format}</span></td>
+            <td>{$vo.weight}</td>
+            <td>{$vo.price}</td>
+            <!--<td><span>{$vo.city}</span></td>-->
+            <td><a class="btn" href="{:U('Receive/edit','id='.$vo['id'])}">编辑</a>
+            </td>
+		</tr>
+            <tr style="background-color: #ffffff;">
+                <td colspan="13" style=" "><img src="__ROOT__/Public/Admin/images/left.png" style="float: left;margin-left:-20px;width: 50%" ><img src="__ROOT__/Public/Admin/images/right.png"  style="margin-right:-20px;float: right;width: 50%"></td>
+            </tr>
+		</volist>
+	</tbody>
+    </table> 
+	</div>
+    <div class="page">
+        {$_page}
+    </div>
+</block>
+
+<block name="script">
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+    <link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+    <php>if(C('COLOR_STYLE')=='blue_color') echo '<link href="__STATIC__/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">';</php>
+    <link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+	<script type="text/javascript">
+        $(function(){
+            $('.time').datetimepicker({
+                format: 'yyyy-mm-dd',
+                language:"zh-CN",
+                minView:2,
+                autoclose:true
+            });
+            showTab();
+
+
+        })
+	</script>
+</block>

@@ -1,0 +1,74 @@
+<extend name="Public/base" />
+<block name="sidebar">
+    <include file="sidemenu" />
+</block>
+<block name="body">
+	<!-- 标题栏 -->
+	<div class="main-title">
+		<h2>快递区域价格列表</h2>
+	</div>
+	<div class="cf">
+		<div class="fl">
+            <a class="btn" href="{:U('AreaPrice/add')}">新 增</a>
+            <button class="btn ajax-post confirm" target-form="ids" url="{:U('remove')}">删 除</button>
+        </div>
+</div>
+    <!-- 数据列表 -->
+    <div class="data-table table-striped">
+	<table class="table table-bordered">
+    <thead>
+        <tr>
+		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+		<!--<th class="">ID</th>-->
+		<th class="">区域</th>
+		<th class="">首重</th>
+		<th class="">续重</th>
+         <th class="">物流公司名称</th>
+		<th class="">所在站点</th>
+         <th class="">操作</th>
+		</tr>
+    </thead>
+    <tbody>
+		<volist name="_list" id="vo">
+		<tr style="border: 1">
+            <td><input class="ids" type="checkbox" name="ids[]" value="{$vo.id}" />
+            </td>
+			<!--<td>{$vo.id} </td>-->
+			<td>{$vo.area}</td>
+			<td>{$vo.price}</td>
+			<td>{$vo.plusprice}</td>
+			<td><span>{$vo.company_id|getCompany}</span></td>
+            <td><span>{$vo.city}</span></td>
+            <td><a class="btn" href="{:U('AreaPrice/edit','id='.$vo['id'])}">编辑</a>
+            </td>
+		</tr>
+		</volist>
+	</tbody>
+    </table> 
+	</div>
+    <div class="page">
+        {$_page}
+    </div>
+</block>
+
+<block name="script">
+	<script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+    <link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+    <php>if(C('COLOR_STYLE')=='blue_color') echo '<link href="__STATIC__/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">';</php>
+    <link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+	<script type="text/javascript">
+        $(function(){
+            $('.time').datetimepicker({
+                format: 'yyyy-mm-dd',
+                language:"zh-CN",
+                minView:2,
+                autoclose:true
+            });
+            showTab();
+
+
+        })
+	</script>
+</block>

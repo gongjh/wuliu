@@ -1,0 +1,85 @@
+<extend name="Public/base"/>
+<block name="sidebar">
+    <include file="sidemenu" />
+</block>
+<block name="body">
+    <div class="main-title">
+        <h2>货物信息</h2>
+    </div>
+    <form action="__SELF__" method="post" class="form-horizontal">
+        <div class="form-item">
+            <label class="item-label">物流公司<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="company_id">
+                    <option value="{$info.company_id}">{$info.company_id|getExpress}</option>
+                    <volist name="list" id="vo">
+                        <option value="{$vo.id}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">收货人姓名<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="receive_name" value="{$info.receive_name}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">收货人地址<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="receive_address" value="{$info.receive_address}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">收货人电话<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="receive_phone" value="{$info.receive_phone}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">寄件人姓名<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="send_name" value="{$info.send_name}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">寄件人地址<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="send_address" value="{$info.send_address}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">寄件人电话<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="send_phone" value="{$info.send_phone}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">快递单号<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="code" value="{$info.code}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">重量<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="weight" value="{$info.weight}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">价格<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="price" value="{$info.price}">
+            </div>
+        </div>
+        <div class="form-item">
+            <input type="hidden" name="id" value="{$info.id}">
+            <button class="btn submit-btn ajax-post" id="submit" type="submit"  name="add" target-form="form-horizontal">确 定</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
+</block>
+
+<block name="script">
+
+</block>

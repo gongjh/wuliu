@@ -1,0 +1,57 @@
+<extend name="Public/base"/>
+<block name="sidebar">
+    <include file="sidemenu" />
+</block>
+<block name="body">
+    <div class="main-title">
+        <h2>修改快递区域价格</h2>
+    </div>
+    <form action="__SELF__" method="post" class="form-horizontal">
+        <div class="form-item">
+            <label class="item-label">物流公司<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="company_id">
+                    <option value="{$info.company_id}"> {$info.company_id|getCompany}</option>
+                    <volist name="list" id="vo">
+                        <option value="{$vo.id}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">区域<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="area" value="{$info.area}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">首重<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="price" value="{$info.price}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">续重<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="plusprice" value="{$info.plusprice}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">所在站点<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="city" value="{$info.city}">
+            </div>
+        </div>
+        <div class="form-item">
+            <input type="hidden" class="text input-large" name="id" value="{$info.id}">
+            <button class="btn submit-btn ajax-post" id="submit" type="submit"  name="add" target-form="form-horizontal">确 定</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+
+    </script>
+</block>

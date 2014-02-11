@@ -1,0 +1,67 @@
+<extend name="Public/base"/>
+<block name="sidebar">
+    <include file="sidemenu" />
+</block>
+<block name="body">
+    <div class="main-title">
+        <h2>导出即时发货信息</h2>
+    </div>
+    <form action="__SELF__" method="post" class="form-horizontal">
+        <div class="form-item">
+            <label class="item-label">物流公司<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="company_id">
+                    <volist name="list" id="vo">
+                        <option value="{$vo.id}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">所在站点<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="city" value="{$city}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">开始时间<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large time" name="start" value="">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">结束时间<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large time" name="end" value="">
+            </div>
+        </div>
+        <div class="form-item">
+            <button class="btn submit-btn" id="submit" type="submit"  name="add" target-form="form-horizontal">导出</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
+</block>
+
+<block name="script">
+    <link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+    <php>if(C('COLOR_STYLE')=='blue_color') echo '<link href="__STATIC__/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">';</php>
+    <link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+    <script type="text/javascript">
+        $('#submit').click(function(){
+            $('#form').submit();
+        });
+
+        $(function(){
+            $('.time').datetimepicker({
+                format: 'yyyy-mm-dd hh:ii',
+                language:"zh-CN",
+                minView:2,
+                autoclose:true
+            });
+            showTab();
+
+        });
+    </script>
+</block>

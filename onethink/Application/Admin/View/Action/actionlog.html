@@ -1,0 +1,87 @@
+<extend name="Public/base"/>
+
+<block name="body">
+	<!-- 标题栏 -->
+	<div class="main-title">
+		<h2>行为日志</h2>
+	</div>
+
+    <div>
+        <button class="btn ajax-post confirm" target-form="ids" url="{:U('remove')}">删 除</button>
+    </div>
+    <div>
+        <!-- 高级搜索 -->
+        <form action="__SELF__" method="POST">
+            <div class=".search-form f1">
+                <div class="sleft">
+                    开始时间： <input type="text" id="firstDate"  name="firstDate" class="text  time" value="{$default_time}" placeholder="开始时间">
+                    结束时间： <input type="text" id="endDate" name="endDate" class="text  time" value="{$default_time}" placeholder="结束时间">
+                    <input type="text" class="text input-large" name="nickname" placeholder="执行者">
+                    <input type="submit" value="搜索"  id="submit"  class="btn">
+                </div>
+            </div></form>
+    </div>
+	<!-- 数据列表 -->
+	<div class="data-table">
+	<table class="">
+    <thead>
+        <tr>
+		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+		<th class="">编号</th>
+		<th class="">行为名称</th>
+		<th class="">执行者</th>
+		<th class="">执行时间</th>
+		<th class="">操作</th>
+		</tr>
+    </thead>
+    <tbody>
+		<volist name="_list" id="vo">
+		<tr>
+            <td><input class="ids" type="checkbox" name="ids[]" value="{$vo.id}" /></td>
+			<td>{$vo.id} </td>
+			<td><a data-id="{$vo.id}" href="{:U('Think/edit?model='.$vo['model_id'].'&id='.$vo['record_id'])}">{:get_action($vo['action_id'],'title')}</a></td>
+			<!--<td>{:get_nickname()}</td>-->
+            <td>{$vo.user_id|get_nickname}</td>
+			<td><span>{$vo.create_time|time_format}</span></td>
+			<td><a href="{:U('Action/edit?id='.$vo['id'])}">详细</a>
+				<a class="confirm ajax-get" href="{:U('Action/remove?ids='.$vo['id'])}">删除</a>
+                </td>
+		</tr>
+		</volist>
+	</tbody>
+    </table> 
+	</div>
+	<!-- 分页 -->
+	<div class="page">{$_page}</div>
+	<!-- /分页 -->
+
+</block>
+<block name="script">
+<script type="text/javascript">
+$(function(){
+	$("#action_add").click(function(){
+		window.location.href = $(this).attr('url');
+	})
+})
+
+</script>
+    <script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+    <link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+    <php>if(C('COLOR_STYLE')=='blue_color') echo '<link href="__STATIC__/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">';</php>
+    <link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.time').datetimepicker({
+                format: 'yyyy-mm-dd',
+                language:"zh-CN",
+                minView:2,
+                autoclose:true
+            });
+            showTab();
+
+
+        })
+    </script>
+</block>

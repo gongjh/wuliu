@@ -1,0 +1,75 @@
+<extend name="Public/base"/>
+<block name="sidebar">
+    <include file="sidemenu" />
+</block>
+<block name="body">
+    <div class="main-title">
+        <h2>编辑退回货物信息</h2>
+    </div>
+    <form action="__SELF__" method="post" class="form-horizontal">
+        <div class="form-item">
+            <label class="item-label">物流公司<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="company_id">
+                    <option value="{$info.company_id}">{$info.company_id|getExpress}</option>
+                    <volist name="list" id="vo">
+                        <option value="{$vo.id}">{$vo.name}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">收货人姓名<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="name" value="{$info.name}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">联系电话<span class="check-tips">（默认填手机号，无手机号写固定电话）</span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="tel" value="{$info.tel}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">快递单号<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="code" value="{$info.code}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">货架号<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="shelf" value="{$info.shelf}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">所在站点<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="city" value="{$info.city}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">类型<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="radio" name="type" value="1" <if condition="$info[type] eq 1" >checked</if>>普通
+                <input type="radio" name="type" value="2" <if condition="$info[type] eq 2" >checked</if>>同城
+                <input type="radio" name="type" value="3" <if condition="$info[type] eq 3" >checked</if>>加急
+                <input type="radio" name="type" value="4" <if condition="$info[type] eq 4" >checked</if>>遗留
+            </div>
+        </div>
+        <div class="form-item">
+            <input type="hidden" name="id" value="{$info.id}">
+            <button class="btn submit-btn ajax-post" id="submit" type="submit"  name="add" target-form="form-horizontal">确 定</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        // Think.setValue("type", {$info.type|default=0});
+        // Think.setValue("group", {$info.group|default=0});
+        //导航高亮
+        $('.side-sub-menu').find('a[href="{:U('Sendonline/index')}"]').closest('li').addClass('current');
+    </script>
+</block>
